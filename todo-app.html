@@ -1,0 +1,120 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<link rel="import"
+      href="../paper-input/paper-input.html">
+<link rel="import"
+      href="../paper-button/paper-button.html">
+
+<dom-module id="todo-app">
+  <template>
+    <style>
+    #title {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        font-size:30px;
+    }
+    :host {
+        display: block;
+        padding: 10px;
+    }
+    paper-button.colored {
+        color: #fff;
+        background: #C21616;
+        font-size: 12px;
+    }
+
+    paper-button.indigo {
+        background-color: var(--paper-indigo-500);
+        color: white;
+        --paper-button-raised-keyboard-focus: {
+            background-color: var(--paper-pink-a200) !important;
+            color: white !important;
+        };
+    }
+
+    #todos {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    </style>
+
+    <div class="card">
+        <h1 id="title">TodoApp</h1>
+        <paper-input
+            char-counter
+            name="todo"
+            value="{{todo}}"
+            label="Todo"
+            maxlength="25"
+            required
+        >
+        </paper-input>
+        <br>
+        <paper-button
+            raised
+            class="indigo"
+            on-click="addTodo"
+        >
+            Submit
+        </paper-button>
+        <div id="todos">
+            <p style="display: block">
+                <template
+                    is="dom-repeat"
+                    items="{{todos}}"
+                    as="todo"
+                    rendered-item-count="{{renderedCount}}"
+                >
+                    <div style="margin-bottom: 5px">
+                        <span>{{todo}}</span>
+                        <paper-button
+                            class="colored"
+                            on-click="destroy"
+                        >
+                            Destroy
+                        </paper-button>
+                        <br />
+                    </div>
+                </template>
+            </p>
+
+            <template is="dom-if" if="{{!renderedCount}}">
+                Todavía no hay todos!
+            </template>
+        </div>
+    </div>
+
+  </template>
+  <script>
+      class TodoApp extends Polymer.Element {
+          static get is() {
+              return 'todo-app';
+          }
+          static get properties() {
+              return {
+                  todo: {
+                      type: String
+                  },
+                  todos: {
+                      type: Array,
+                      value: [],
+                      notify: true
+                  }
+              }
+          }
+
+          addTodo(e) {
+              this.todo && this.push('todos', this.todo);
+              this.todo && this.set('todo', '');
+          }
+
+          destroy(e) {
+              this.splice('todos', e.model.index, 1);
+          }
+      }
+      window.customElements.define(TodoApp.is, TodoApp);
+  </script>
+</dom-module>

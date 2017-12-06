@@ -1,0 +1,52 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="hola-mundo">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>[[msg]]!</h2>
+    <p>[[name]]</p>
+    <slot></slot>
+    <div>
+      Pollo
+    </div>
+  </template>
+
+  <script>
+    /**
+     * `hola-mundo`
+     * Hola mundo
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class HolaMundo extends Polymer.Element {
+      static get is() { return 'hola-mundo'; }
+      static get properties() {
+        return {
+          name: {
+            type: String,
+          },
+          msg: {
+            type: String,
+            value: 'Property desde javascript!!'
+          }
+        };
+      }
+      created() {
+        super.created();
+        console.log('Created');
+      }
+      ready() {
+        super.ready();
+        console.log('Ready');
+      }
+    }
+
+    window.customElements.define(HolaMundo.is, HolaMundo);
+  </script>
+</dom-module>

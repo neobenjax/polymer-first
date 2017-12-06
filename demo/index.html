@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>hola-mundo demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../hola-mundo.html">
+    <link rel="import" href="../user-list.html">
+    <link rel="import" href="../todo-app.html">
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+      </style>
+    </custom-style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Basic hola-mundo demos kljlh</h3>
+      <demo-snippet>
+        <template>
+          <hola-mundo name="Parámetro pasado por atributo">
+            Contenido inyectado en SLOT
+          </hola-mundo>
+          <user-list></user-list>
+          <todo-app></todo-app>
+        </template>
+      </demo-snippet>
+    </div>
+  </body>
+</html>

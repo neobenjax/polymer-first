@@ -1,0 +1,53 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="user-list">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      div{
+        border-bottom: 1px solid #000;
+      }
+    </style>
+
+    <template is="dom-repeat" items="{{users}}" as="user">
+        <div>First name: <span>{{user.first}}</span></div>
+        <div>Last name: <span>{{user.last}}</span></div>
+        <p></p>
+    </template>
+
+  </template>
+
+  <script>
+    /**
+     * `user-list`
+     * Hola mundo
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class UserList extends Polymer.Element {
+      static get is() { return 'user-list'; }
+      constructor() {
+        super();
+        this.users = [
+            {first: 'Bob', last: 'Li'},
+            {first: 'Ayesha', last: 'Johnson'},
+            {first: 'Fatma', last: 'Kumari'},
+            {first: 'Tony', last: 'Morelli'}
+        ]
+      }
+      static get properties() {
+        return {};
+      }
+      ready() {
+        super.ready();
+        console.log('Ready user-list');
+      }
+    }
+
+    window.customElements.define(UserList.is, UserList);
+  </script>
+</dom-module>
